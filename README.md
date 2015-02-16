@@ -1,14 +1,35 @@
+<a class="mk-toclify" id="table-of-contents"></a>
+
+# Table of Contents
+- [DumbTemplates](#dumbtemplates)
+    - [Hello, DumbTemplates](#hello-dumbtemplates)
+    - [Context](#context)
+    - [Directives](#directives)
+    - [<a name="truthiness"></a>Truthiness](#a-name-truthiness-a-truthiness)
+    - [<a name="templateResolution"></a>Template Resolution](#a-name-templateresolution-a-template-resolution)
+    - [Computed Variables](#computed-variables)
+    - [Command Line Use](#command-line-use)
+    - [Don't](#don-t)
+    - [Building](#building)
+    - [Using with Maven](#using-with-maven)
+        - [Add the repository to your project:](#add-the-repository-to-your-project)
+        - [Add the dependency to your project:](#add-the-dependency-to-your-project)
+    - [Why the name?](#why-the-name)
+
+
+<a class="mk-toclify" id="dumbtemplates"></a>
 # DumbTemplates
 
 DumbTemplates are an unambitious, and therefore very simple, and arguably dumb, text template processing enging for Java.  Features provided include:
 
-  * Variable substitution with or without html escaping or in JSON format
-  * Conditional inclusion of other templates
-  * Template inheritance
-  * Template loading from the filesystem, classpath, or manually-populated data structure
+* Variable substitution with or without html escaping or in JSON format
+* Conditional inclusion of other templates
+* Template inheritance
+* Template loading from the filesystem, classpath, or manually-populated data structure
 
 Notably, loops are not supported.
 
+<a class="mk-toclify" id="hello-dumbtemplates"></a>
 ## Hello, DumbTemplates
 
 ```java
@@ -23,10 +44,12 @@ The second line defines a new template called "myTemplate" that simply contains 
 
 The third line obtains this new template from the `DumbTemplateStore` and renders it to a `String`.  It passes the `render()` method a `null` because it's not using any variables.
 
+<a class="mk-toclify" id="context"></a>
 ## Context
 
 Variables can be made accessible to DumbTemplates via a `Map<String, Object>` passed into the `DumbTemplate.render()` method.  This was `null` in line 3 of the above example because we weren't using any variables.
 
+<a class="mk-toclify" id="directives"></a>
 ## Directives
 
 Templates are just text.  DumbTemplate behavior is controlled using a few simple directives inline with your text:
@@ -45,17 +68,19 @@ Templates are just text.  DumbTemplate behavior is controlled using a few simple
 | `{$}` | Same as above, but inserts the entire context as a series of JSON variable declarations.
 
 
+<a class="mk-toclify" id="a-name-truthiness-a-truthiness"></a>
 ## <a name="truthiness"></a>Truthiness
 
 For conditional `#include` directives, truthiness is determined as follows:
 
-  * `null` is not truthy.
-  * `true` (the boolean or Boolean type) is truthy.  `false` is not.
-  * Nonzero numeric data types are truthy.  Zero is not truthy.
-  * Empty `String`s are not truthy.
-  * `String`s that are equal (case-insensitive) to "0", "f", "false", "n", or "no" are not truthy.
-  * All other objects are truthy.
+* `null` is not truthy.
+* `true` (the boolean or Boolean type) is truthy.  `false` is not.
+* Nonzero numeric data types are truthy.  Zero is not truthy.
+* Empty `String`s are not truthy.
+* `String`s that are equal (case-insensitive) to "0", "f", "false", "n", or "no" are not truthy.
+* All other objects are truthy.
 
+<a class="mk-toclify" id="a-name-templateresolution-a-template-resolution"></a>
 ## <a name="templateResolution"></a>Template Resolution
 
 It can be useful to organize your templates into a hierarchy, especially if you are using a `DumbLazyFileTemplateStore` or `DumbLazyClasspathTemplateStore` instead of the simpler `DumbTemplateStore`.  Template names are treated as hierarchical, using `/` as a path delimiter.  `#include` and `#inside` directives resolve their template references as relative to the template currently being processed.  Templates can be referenced absolutely (relative to the root of their store) with a leading `/`.
@@ -66,10 +91,10 @@ For example, suppose you have the following directory/file structure under `/hom
 +-- a.txt
 +-- b.txt
 +-- dir1
-  +-- dir2
-    +-- deep.txt
-    +-- dir3
-      +-- deeper.txt
++-- dir2
++-- deep.txt
++-- dir3
++-- deeper.txt
 ```        
 
 ...and you then create a `DumbLazyFileTemplateStore`:
@@ -85,32 +110,74 @@ Care has been taken to prevent template resolution from escaping from the root o
 
 This technique also works with the simple `DumbTemplateStore` provided that you manually name your `DumbTemplate`s properly.
 
+<a class="mk-toclify" id="computed-variables"></a>
 ## Computed Variables
 
 If you need to compute a variable for insertion rather than store it permanently in the context (for example, if it needs to change between calls within a template), override `get` in the `Map<String, Object>` you provide as a template context.
 
+<a class="mk-toclify" id="command-line-use"></a>
 ## Command Line Use
 
 There's a ~~Dumb~~ simple command line interface included with the jar.  Its usage is `java -jar JARFILE DIRNAME TEMPLATENAME`.  This initializes a `DumbLazyFileTemplateStore` at DIRNAME, stuffs the environment into a context, and renders TEMPLATENAME to stdout. 
 
+<a class="mk-toclify" id="don-t"></a>
 ## Don't
 
-  * use spaces in variable names
-  * include leading or trailing whitespace in the values of your variables if they are being examined for conditional `#include`s.
-  * create circular references among your templates (e.g., mutual `#include`s).
-  * be surprised if you find bugs (but do please let me know about them).
-  
+* use spaces in variable names
+* include leading or trailing whitespace in the values of your variables if they are being examined for conditional `#include`s.
+* create circular references among your templates (e.g., mutual `#include`s).
+* be surprised if you find bugs (but do please let me know about them).
+
+<a class="mk-toclify" id="building"></a>
 ## Building
 
 `mvn package`
 
+<a class="mk-toclify" id="using-with-maven"></a>
+## Using with Maven
+
+<a class="mk-toclify" id="add-the-repository-to-your-project"></a>
+### Add the repository to your project:
+
+```xml
+<project>
+...
+<repositories>
+<repository>
+<id>martiansoftware</id>
+<url>http://mvn.martiansoftware.com</url>
+</repository>
+</repositories> 
+...
+</project>
+```
+
+<a class="mk-toclify" id="add-the-dependency-to-your-project"></a>
+### Add the dependency to your project:
+-----------------------------------
+
+```xml
+<dependencies>
+<dependency>
+<groupId>com.martiansoftware</groupId>
+<artifactId>dumbtemplates</artifactId>
+<version>0.1.0-SNAPSHOT</version>
+<scope>compile</scope>
+</dependency>
+</dependencies>
+```
+
+
+
+<a class="mk-toclify" id="why-the-name"></a>
 ## Why the name?
 
-  1. `DumbTemplate`s are really pretty unsophisticated (which IMHO is a good thing for some purposes).  There are some seemingly arbitrary but liveable limitations (e.g., "don't use spaces in your variable names").
-  2. Template parsing uses regular expressions.  While expedient, many would consider this dumb.
-  3. It has only been minimally tested.  This is dumb.
-  4. It was originally slapped together very quickly out of frustration with some other libraries.  It seemed dumb to me that I even found them necessary (and maybe they were not necessary, in which case I am dumb.)
-  5. `DumbTemplate`s are actually pretty good.  And [good is dumb.](http://www.imdb.com/title/tt0094012/quotes)
+1. `DumbTemplate`s are really pretty unsophisticated (which IMHO is a good thing for some purposes).  There are some seemingly arbitrary but liveable limitations (e.g., "don't use spaces in your variable names").
+2. Template parsing uses regular expressions.  While expedient, many would consider this dumb.
+3. It has only been minimally tested.  This is dumb.
+4. It was originally slapped together very quickly out of frustration with some other libraries.  It seemed dumb to me that I even found them necessary (and maybe they were not necessary, in which case I am dumb.)
+5. `DumbTemplate`s are actually pretty good.  And [good is dumb.](http://www.imdb.com/title/tt0094012/quotes)
+
 
 
 
