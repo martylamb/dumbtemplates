@@ -25,10 +25,10 @@ public class Main {
  
     public static void main(String[] args) throws Exception {
         if (args.length != 2) {
-            System.err.println("Usage: dumbtemplate TEMPLATEDIR TEMPLATENAME");
+            System.err.println("\nUsage: dumbtemplate TEMPLATEDIR TEMPLATENAME\n");
             System.err.println("Where TEMPLATEDIR is a directory containing your templates,");
             System.err.println("and TEMPLATENAME is the relative path within TEMPLATEDIR of the");
-            System.err.println("template you want to render.");
+            System.err.println("template you want to render.\n");
             System.exit(1);
         }
 
