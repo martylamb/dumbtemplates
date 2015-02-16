@@ -153,14 +153,14 @@ $
 
 ```xml
 <project>
-...
-<repositories>
-<repository>
-<id>martiansoftware</id>
-<url>http://mvn.martiansoftware.com</url>
-</repository>
-</repositories> 
-...
+	...
+	<repositories>
+		<repository>
+			<id>martiansoftware</id>
+			<url>http://mvn.martiansoftware.com</url>
+		</repository>
+	</repositories> 
+	...
 </project>
 ```
 
@@ -170,12 +170,12 @@ $
 
 ```xml
 <dependencies>
-<dependency>
-<groupId>com.martiansoftware</groupId>
-<artifactId>dumbtemplates</artifactId>
-<version>0.1.0-SNAPSHOT</version>
-<scope>compile</scope>
-</dependency>
+	<dependency>
+		<groupId>com.martiansoftware</groupId>
+		<artifactId>dumbtemplates</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+		<scope>compile</scope>
+	</dependency>
 </dependencies>
 ```
 
