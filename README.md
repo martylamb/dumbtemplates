@@ -5,8 +5,8 @@
     - [Hello, DumbTemplates](#hello-dumbtemplates)
     - [Context](#context)
     - [Directives](#directives)
-    - [<a name="truthiness"></a>Truthiness](#a-name-truthiness-a-truthiness)
-    - [<a name="templateResolution"></a>Template Resolution](#a-name-templateresolution-a-template-resolution)
+    - [Truthiness](#truthiness)
+    - [Template Resolution](#template-resolution)
     - [Computed Variables](#computed-variables)
     - [Command Line Use](#command-line-use)
     - [Don't](#don-t)
@@ -58,9 +58,9 @@ Templates are just text.  DumbTemplate behavior is controlled using a few simple
 |-----------|-------------|
 | `{= VAR }` | Inserts the value stored in the context with the name `VAR` (calling its `toString()` method if necessary).  VAR should be unquoted and should not contain spaces.  The inserted value will be html-escaped.|
 | `{=! VAR}` | Same as above, but without html-escaping the result. |
-| `{#include TEMPLATE}` | Inserts the contents of the referenced template.  The template is retrieved from the `DumbTemplateStore`.  The name should not include spaces. See [Template Resolution](#templateResolution), below. |
-| `{#include TEMPLATE if VAR}` | Same as above, but only if the value stored in VAR is "[truthy](#truthy)" (see below). |
-| `{#include TEMPLATE unless VAR}` | Same as above, but only if the value stored in VAR is **NOT** "[truthy](#truthy)" (see below). |  
+| `{#include TEMPLATE}` | Inserts the contents of the referenced template.  The template is retrieved from the `DumbTemplateStore`.  The name should not include spaces. See [Template Resolution](#template-resolution), below. |
+| `{#include TEMPLATE if VAR}` | Same as above, but only if the value stored in VAR is "[truthy](#truthiness)" (see below). |
+| `{#include TEMPLATE unless VAR}` | Same as above, but only if the value stored in VAR is **NOT** "[truthy](#truthiness)" (see below). |  
 | `{#include TEMPLATE if VAR VALUE}` | Same as above, but only if the value stored in VAR is equal to VALUE (when compared as a String).  VALUE should not be quoted and should not have leading or trailing whitespace. |
 | `{#include TEMPLATE unless VAR}` | Same as above, but only if the value stored in VAR is **NOT** equal to VALUE. |  
 | `{#inside TEMPLATE }` | Provides Dumb Template Inheritance &reg;.  The current template is rendered completely, with the result stored in the provided context as "content".  The referenced template is then rendered with the modified context.  It should include somewhere a {= content} or {=! content}.  This can be used, for example, to wrap content in a common html header/footer.  The referenced template can access any variables defined in the contect (e.g., "title" for the html example). Only the first use of this directive inside a template is honored; subsequent uses are ignored. |
@@ -68,8 +68,8 @@ Templates are just text.  DumbTemplate behavior is controlled using a few simple
 | `{$}` | Same as above, but inserts the entire context as a series of JSON variable declarations.
 
 
-<a class="mk-toclify" id="a-name-truthiness-a-truthiness"></a>
-## <a name="truthiness"></a>Truthiness
+<a class="mk-toclify" id="truthiness"></a>
+## Truthiness
 
 For conditional `#include` directives, truthiness is determined as follows:
 
@@ -80,8 +80,8 @@ For conditional `#include` directives, truthiness is determined as follows:
 * `String`s that are equal (case-insensitive) to "0", "f", "false", "n", or "no" are not truthy.
 * All other objects are truthy.
 
-<a class="mk-toclify" id="a-name-templateresolution-a-template-resolution"></a>
-## <a name="templateResolution"></a>Template Resolution
+<a class="mk-toclify" id="template-resolution"></a>
+## Template Resolution
 
 It can be useful to organize your templates into a hierarchy, especially if you are using a `DumbLazyFileTemplateStore` or `DumbLazyClasspathTemplateStore` instead of the simpler `DumbTemplateStore`.  Template names are treated as hierarchical, using `/` as a path delimiter.  `#include` and `#inside` directives resolve their template references as relative to the template currently being processed.  Templates can be referenced absolutely (relative to the root of their store) with a leading `/`.
 
