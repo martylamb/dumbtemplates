@@ -120,6 +120,18 @@ If you need to compute a variable for insertion rather than store it permanently
 
 There's a ~~Dumb~~ simple command line interface included with the jar.  Its usage is `java -jar JARFILE DIRNAME TEMPLATENAME`.  This initializes a `DumbLazyFileTemplateStore` at DIRNAME, stuffs the environment into a context, and renders TEMPLATENAME to stdout. 
 
+```
+$ java -jar target/dumbtemplates-0.1.0-SNAPSHOT-jar-with-dependencies.jar 
+
+Usage: dumbtemplate TEMPLATEDIR TEMPLATENAME
+
+Where TEMPLATEDIR is a directory containing your templates,
+and TEMPLATENAME is the relative path within TEMPLATEDIR of the
+template you want to render.
+
+mlamb@lrrr:~/src/dumbtemplates$ 
+```
+
 <a class="mk-toclify" id="don-t"></a>
 ## Don't
 
