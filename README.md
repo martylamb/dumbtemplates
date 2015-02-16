@@ -129,7 +129,7 @@ Where TEMPLATEDIR is a directory containing your templates,
 and TEMPLATENAME is the relative path within TEMPLATEDIR of the
 template you want to render.
 
-mlamb@lrrr:~/src/dumbtemplates$ 
+$ 
 ```
 
 <a class="mk-toclify" id="don-t"></a>
