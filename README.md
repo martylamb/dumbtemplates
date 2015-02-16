@@ -91,10 +91,10 @@ For example, suppose you have the following directory/file structure under `/hom
 +-- a.txt
 +-- b.txt
 +-- dir1
-+-- dir2
-+-- deep.txt
-+-- dir3
-+-- deeper.txt
+  +-- dir2
+    +-- deep.txt
+    +-- dir3
+      +-- deeper.txt
 ```        
 
 ...and you then create a `DumbLazyFileTemplateStore`:
@@ -104,7 +104,7 @@ DumbTemplateStore ds = new DumbLazyFileTemplateStore(new File("/home/me/template
 ```
 You can now reference anything in that directory structure as a template, using names like "a.txt" and "dir1/dir2/dir3/deeper.txt".
 
-If the "deeper.txt" file, needs to include the contents of "deep.txt", it can do so via an absolute path (e.g., `{#include /dir1/dir2/deep.txt}`), or via a relative path (e.g., `{#include ../deep.txt}`).
+If the "deeper.txt" file needs to include the contents of "deep.txt", it can do so via an absolute path (e.g., `{#include /dir1/dir2/deep.txt}`), or via a relative path (e.g., `{#include ../deep.txt}`).
 
 Care has been taken to prevent template resolution from escaping from the root of the `DumbLazyFileTemplateStore` or `DumbLazyClasspathTemplateStore`.
 
