@@ -76,8 +76,8 @@ For conditional `#include` directives, truthiness is determined as follows:
 * `null` is not truthy.
 * `true` (the boolean or Boolean type) is truthy.  `false` is not.
 * Nonzero numeric data types are truthy.  Zero is not truthy.
-* Empty `String`s are not truthy.
-* `String`s that are equal (case-insensitive) to "0", "f", "false", "n", or "no" are not truthy.
+* Empty `Strings` are not truthy.
+* `Strings` that are equal (case-insensitive) to "0", "f", "false", "n", or "no" are not truthy.
 * All other objects are truthy.
 
 <a class="mk-toclify" id="template-resolution"></a>
@@ -108,7 +108,7 @@ If the "deeper.txt" file, needs to include the contents of "deep.txt", it can do
 
 Care has been taken to prevent template resolution from escaping from the root of the `DumbLazyFileTemplateStore` or `DumbLazyClasspathTemplateStore`.
 
-This technique also works with the simple `DumbTemplateStore` provided that you manually name your `DumbTemplate`s properly.
+This technique also works with the simple `DumbTemplateStore` provided that you manually name your `DumbTemplates` properly.
 
 <a class="mk-toclify" id="computed-variables"></a>
 ## Computed Variables
@@ -136,8 +136,8 @@ $
 ## Don't
 
 * use spaces in variable names
-* include leading or trailing whitespace in the values of your variables if they are being examined for conditional `#include`s.
-* create circular references among your templates (e.g., mutual `#include`s).
+* include leading or trailing whitespace in the values of your variables if they are being examined for conditional `#includes`.
+* create circular references among your templates (e.g., mutual `#includes`).
 * be surprised if you find bugs (but do please let me know about them).
 
 <a class="mk-toclify" id="building"></a>
@@ -184,11 +184,11 @@ $
 <a class="mk-toclify" id="why-the-name"></a>
 ## Why the name?
 
-1. `DumbTemplate`s are really pretty unsophisticated (which IMHO is a good thing for some purposes).  There are some seemingly arbitrary but liveable limitations (e.g., "don't use spaces in your variable names").
+1. `DumbTemplates` are really pretty unsophisticated (which IMHO is a good thing for some purposes).  There are some seemingly arbitrary but liveable limitations (e.g., "don't use spaces in your variable names").
 2. Template parsing uses regular expressions.  While expedient, many would consider this dumb.
 3. It has only been minimally tested.  This is dumb.
 4. It was originally slapped together very quickly out of frustration with some other libraries.  It seemed dumb to me that I even found them necessary (and maybe they were not necessary, in which case I am dumb.)
-5. `DumbTemplate`s are actually pretty good.  And [good is dumb.](http://www.imdb.com/title/tt0094012/quotes)
+5. `DumbTemplates` are actually pretty good.  And [good is dumb.](http://www.imdb.com/title/tt0094012/quotes)
 
 
 
