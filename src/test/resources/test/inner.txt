@@ -1,0 +1,4 @@
+{# inside outer.txt }
+
+This is the inner content.
+{# include a/a.txt }
