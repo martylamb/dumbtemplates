@@ -64,8 +64,8 @@ Templates are just text.  DumbTemplate behavior is controlled using a few simple
 | `{#include TEMPLATE if VAR VALUE}` | Same as above, but only if the value stored in VAR is equal to VALUE (when compared as a String).  VALUE should not be quoted and should not have leading or trailing whitespace. |
 | `{#include TEMPLATE unless VAR}` | Same as above, but only if the value stored in VAR is **NOT** equal to VALUE. |  
 | `{#inside TEMPLATE }` | Provides Dumb Template Inheritance &reg;.  The current template is rendered completely, with the result stored in the provided context as "content".  The referenced template is then rendered with the modified context.  It should include somewhere a {= content} or {=! content}.  This can be used, for example, to wrap content in a common html header/footer.  The referenced template can access any variables defined in the contect (e.g., "title" for the html example). Only the first use of this directive inside a template is honored; subsequent uses are ignored. |
-| `{$ VAR }` | Inserts the referenced variable as JSON, including a variable declaration.  Example: `var myvar="this is an example";`.  Complex objects may be used.  Serialization is performed by [Gson](https://code.google.com/p/google-gson/).  You can provide the `DumbTemplateStore` with your own `Gson` object if you require specific serialization behavior. |
-| `{$}` | Same as above, but inserts the entire context as a series of JSON variable declarations.
+| `{$ VAR }` | Inserts the referenced variable as JSON.  Complex objects may be used.  Serialization is performed by [Gson](https://code.google.com/p/google-gson/).  You can provide the `DumbTemplateStore` with your own `Gson` object if you require specific serialization behavior. |
+| `{$}` | Same as above, but inserts the entire context as JSON.
 
 
 <a class="mk-toclify" id="truthiness"></a>

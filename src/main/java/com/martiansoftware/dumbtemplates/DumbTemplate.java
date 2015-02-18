@@ -154,11 +154,11 @@ public class DumbTemplate {
                     if (ctx == null) return;
                     Gson gson = _store.getGson();
                     if (var == null) {
-                        ctx.forEach((key, val) -> {out.format("var %s = %s;\n", key, gson.toJson(val));});
+                        gson.toJson(ctx, out);
                     } else {
                         Object o = ctx.get(var);
                         if (o == null) _store.warning("variable not defined: " + mr.group[Directive.VAR_NAME]);
-                        out.format("var %s = %s;\n", var, gson.toJson(o));
+                        gson.toJson(o, out);
                     }
                 };
             case INSIDE:
