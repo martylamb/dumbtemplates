@@ -20,7 +20,7 @@
 <a class="mk-toclify" id="dumbtemplates"></a>
 # DumbTemplates
 
-DumbTemplates are an unambitious, and therefore very simple, and arguably dumb, text template processing enging for Java.  Features provided include:
+DumbTemplates are an unambitious, and therefore very simple, and arguably dumb, text template processing engine for Java.  Features provided include:
 
 * Variable substitution with or without html escaping or in JSON format
 * Conditional inclusion of other templates
