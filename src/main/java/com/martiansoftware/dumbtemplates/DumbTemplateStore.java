@@ -91,6 +91,8 @@ public class DumbTemplateStore {
         return _gson;
     }
     
+    public void setGson(Gson gson) { _gson = gson; }
+    
     void exception(Exception e) { if (_log != null) _log.log(e); }    
     void error(String msg) { if (_log != null) _log.log("Error: " + msg); }
     void warning(String msg) { if (_log != null) _log.log("Warning: " + msg); }
