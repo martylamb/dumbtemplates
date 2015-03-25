@@ -67,7 +67,7 @@ public class DumbTemplateStore {
      * @return this DumbTemplateStore
      * @throws IOException 
      */
-    public DumbTemplateStore add(String templateName, Reader templateDef) throws IOException {
+    public DumbTemplateStore add(String templateName, Reader templateDef) throws IOException {        
         StringBuilder s = new StringBuilder();
         int n; char[] cbuf = new char[4096];
         while ((n = templateDef.read(cbuf)) != -1) s.append(cbuf, 0, n);            
@@ -96,5 +96,6 @@ public class DumbTemplateStore {
     void exception(Exception e) { if (_log != null) _log.log(e); }    
     void error(String msg) { if (_log != null) _log.log("Error: " + msg); }
     void warning(String msg) { if (_log != null) _log.log("Warning: " + msg); }
+    void log(String msg) { if (_log != null) _log.log(msg); }
     
 }
