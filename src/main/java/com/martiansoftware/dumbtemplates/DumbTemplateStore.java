@@ -81,9 +81,7 @@ public class DumbTemplateStore {
      * @return 
      */
     public DumbTemplate get(String templateName) {
-        DumbTemplate result = _templates.get(templateName);
-        if (result == null) error("Template not found: " + templateName);
-        return result;
+        return _templates.get(templateName);
     }
 
     Gson getGson() {
@@ -91,7 +89,7 @@ public class DumbTemplateStore {
         return _gson;
     }
     
-    public void setGson(Gson gson) { _gson = gson; }
+    public DumbTemplateStore setGson(Gson gson) { _gson = gson; return this;}
     
     void exception(Exception e) { if (_log != null) _log.log(e); }    
     void error(String msg) { if (_log != null) _log.log("Error: " + msg); }
