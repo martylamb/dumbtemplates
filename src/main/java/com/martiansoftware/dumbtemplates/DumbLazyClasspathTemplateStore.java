@@ -1,5 +1,6 @@
 package com.martiansoftware.dumbtemplates;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 
@@ -45,7 +46,12 @@ public class DumbLazyClasspathTemplateStore extends DumbTemplateStore {
         String fullPath = new StringBuilder(_path).append("/").append(storePath).toString();
         
         try {
-            add(storePath, new InputStreamReader(this.getClass().getResourceAsStream(fullPath)));
+            InputStream in = this.getClass().getResourceAsStream(fullPath);
+            if (in == null) {
+                error("Template not found in classpath: " + fullPath);
+                return null;
+            }
+            add(storePath, new InputStreamReader(in));
             return super.get(storePath);
         } catch (Exception e) {
             error("Exception while loading resource " + fullPath);

@@ -84,6 +84,8 @@ public class DumbLazyFileTemplateStore extends DumbTemplateStore {
                         return null;
                     }
                 }
+            } else {
+                error("Template not found in filesystem: " + _f.getAbsolutePath());
             }
             return _template;
         }
