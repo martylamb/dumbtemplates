@@ -52,7 +52,6 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <addClasspath>true</addClasspath>
                             <mainClass>com.martiansoftware.dumbtemplates.Main</mainClass>
                         </manifest>
                     </archive>
