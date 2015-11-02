@@ -82,6 +82,12 @@ public class DumbTemplate {
      */
     public String render(Map<String, Object> ctx) { return render(ctx, true); }
     
+    /**
+     * Renders this DumbTemplate to a String with no context at all
+     * @return the rendered output
+     */
+    public String render() { return render(null); }
+    
     public String getName() { return _name; }
    
     private void render(Map<String, Object> ctx, PrintWriter out, boolean allowInside) {

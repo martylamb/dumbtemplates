@@ -2,6 +2,7 @@ package com.martiansoftware.dumbtemplates;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.Map;
 
@@ -84,6 +85,27 @@ public class DumbTemplateStore {
         return _templates.get(templateName);
     }
 
+    /**
+     * Shortcut for get(templateName).render(context);
+     */
+    public String render(String templateName, Map<String, Object> context) {
+        return get(templateName).render(context);
+    }
+    
+    /**
+     * Shortcut for get(templateName).render();
+     */
+    public String render(String templateName) {
+        return get(templateName).render();
+    }
+    
+    /**
+     * Shortcut for get(templateName).render(context, out);
+     */
+    public void render(String templateName, Map<String, Object> context, PrintWriter out) {
+        get(templateName).render(context, out);
+    }
+    
     Gson getGson() {
         if (_gson == null) _gson = new Gson();
         return _gson;
